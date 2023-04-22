@@ -11,4 +11,5 @@ export const errorScope = {
   },
   VALIDATION : 300,
   PERMISSION: 400,
+  SERVER_ERROR: 500,
 };
