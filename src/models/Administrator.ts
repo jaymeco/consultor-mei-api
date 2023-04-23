@@ -13,10 +13,10 @@ import {
 import { User } from './User';
 
 @Table({
-  tableName: 'user',
+  tableName: 'administrator',
   name: {
-    plural: 'Users',
-    singular: 'User',
+    plural: 'Administrators',
+    singular: 'Administrator',
   },
 })
 export class Administrator extends Model {
