@@ -4,12 +4,13 @@ import mapRequestBody from '../helpers/mapRequestBody';
 import { AdministratorService } from '../interfaces/contracts/AdministratorService';
 import { AuthService } from '../interfaces/contracts/AuthService';
 import { CreateAdministratorRequest } from '../interfaces/requests/CreateAdministratorRequest';
+import { CreateAdministratorWork } from '../unitWorks/CreateAdministratorWork';
 
 export class AdministratorController {
   constructor(
     private service: AdministratorService,
     private authService: AuthService,
-  ) { 
+  ) {
     this.create = this.create.bind(this);
   }
 
@@ -24,28 +25,25 @@ export class AdministratorController {
         admin,
       } = mapRequestBody<CreateAdministratorRequest>(request);
 
-      const createdUser = await this.authService.createUser(user);
-
-      const createdAdmin = await this.service.create({
-        ...admin,
-        user_id: createdUser.id,
-      });
+      const { createdAdmin, createdUser } = await new CreateAdministratorWork(
+        this.service,
+        this.authService,
+      ).buildUnitWork(user, admin);
 
       return response.status(HtppStatus.CREATED).json({
         id: createdAdmin.id,
         name: createdAdmin.name,
         email: createdAdmin.email,
         user: {
-          id: createdAdmin.user.id,
-          name: createdAdmin.user.name,
-          email: createdAdmin.user.email,
-          avatar_path: createdAdmin.user.avatar_path,
-          license_id: createdAdmin.user.license_id,
-          user_type_id: createdAdmin.user.user_type_id,
+          id: createdUser.id,
+          name: createdUser.name,
+          email: createdUser.email,
+          avatar_path: createdUser.avatar_path,
+          license_id: createdUser.license_id,
+          user_type_id: createdUser.user_type_id,
         },
       });
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
