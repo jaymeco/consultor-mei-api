@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { errorScope } from '../constants/ErrorScope';
 import { BaseError } from '../interfaces/errors/BaseError';
 import { HtppStatus } from '../Enums/HttpStatus';
+import errorHandler from '../handlers/errors/errorHandler';
 
 function mapHtppStatus(error: BaseError) {
   const {
@@ -27,6 +28,7 @@ export default (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) => {
+  error = errorHandler(error);
   const status = mapHtppStatus(error);
 
   return response.status(status).json(error);

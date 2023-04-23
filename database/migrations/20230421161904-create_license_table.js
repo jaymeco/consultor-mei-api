@@ -3,15 +3,19 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('user_type', {
+    await queryInterface.createTable('license', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      description: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
+      license_type_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'license_type',
+          key: 'id',
+        },
+        allowNull: false, 
       },
       created_at: {
         type: Sequelize.DATE,
@@ -31,6 +35,6 @@ module.exports = {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_type');
+    await queryInterface.dropTable('license');
   },
 };

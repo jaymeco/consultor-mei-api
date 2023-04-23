@@ -1,5 +1,6 @@
-export interface BaseError {
+export interface BaseError<ErrorDetail = any> extends Error {
   scope: number;
-  details?: any[];
+  message: string;
+  details?: ErrorDetail[];
   previous?: any;
 }

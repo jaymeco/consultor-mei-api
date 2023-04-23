@@ -4,10 +4,10 @@ import {
   FieldValidationError,
   AlternativeValidationError,
   GroupedAlternativeValidationError,
-} from "express-validator";
+} from 'express-validator';
 
-import { errorScope } from "../../constants/ErrorScope";
-import { BaseError } from "../../interfaces/errors/BaseError";
+import { errorScope } from '../../constants/ErrorScope';
+import { BaseError } from '../../interfaces/errors/BaseError';
 
 function handleFieldError(error: FieldValidationError) {
   return {
@@ -29,7 +29,9 @@ function handleUnknownFieldsError(error: UnknownFieldsError) {
   }));
 }
 
-function handleAlternativeGroupedError(error: GroupedAlternativeValidationError) {
+function handleAlternativeGroupedError(
+  error: GroupedAlternativeValidationError,
+) {
   return error.nestedErrors
     .map((nestedErrors: FieldValidationError[]) => {
       return nestedErrors.map(handleFieldError);
@@ -42,14 +44,16 @@ function mapValidationErroType(error: ValidationError) {
     'alternative': handleAlternativeError,
     'unknown_fields': handleUnknownFieldsError,
     'alternative_grouped': handleAlternativeGroupedError,
-  }
+  };
 
   return mappedType[error.type](error as any);
 }
 
 export default (details: ValidationError[]): BaseError => {
   return {
+    name: 'ValidationError',
     scope: errorScope.VALIDATION,
+    message: 'Erro de validação',
     details: details.map(error => mapValidationErroType(error)),
-  }
-}
+  };
+};
