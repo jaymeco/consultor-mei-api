@@ -29,7 +29,7 @@ export class AdministratorService implements Contract {
     return Boolean(exists);
   }
 
-  private async throwIfExists(field: string, value?: any) {
+  private throwIfExists(field: string, value?: any) {
     throw new ResourceException()
       .alreadyExists('administrator', field, value);
   }
