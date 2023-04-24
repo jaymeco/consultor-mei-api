@@ -16,9 +16,6 @@ export default requestValidatorMiddleware([
   body('user.avatar_path')
     .exists().withMessage(validationErrors.required).bail()
     .notEmpty().withMessage(validationErrors.notEmpty).bail(),
-  body('user.license_id')
-    .exists().withMessage(validationErrors.required).bail()
-    .notEmpty().withMessage(validationErrors.notEmpty).bail(),
   body('user.user_type_id')
     .exists().withMessage(validationErrors.required).bail()
     .notEmpty().withMessage(validationErrors.notEmpty).bail(),

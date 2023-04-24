@@ -12,7 +12,6 @@ import {
   HasOne,
 } from 'sequelize-typescript';
 import { Administrator } from './Administrator';
-import { License } from './License';
 import { UserType } from './UserType';
 
 @Table({
@@ -45,14 +44,8 @@ export class User extends Model {
   @Column(DataTypes.STRING(255))
     avatar_path!: string;
 
-  @ForeignKey(() => License)
-    license_id!: number;
-
   @ForeignKey(() => UserType)
     user_type_id!: number;
-
-  @BelongsTo(() => License)
-    license!: License;
 
   @BelongsTo(() => UserType)
     user_type!: UserType;
