@@ -9,7 +9,9 @@ import {
   Unique,
   ForeignKey,
   BelongsTo,
+  HasOne,
 } from 'sequelize-typescript';
+import { Administrator } from './Administrator';
 import { License } from './License';
 import { UserType } from './UserType';
 
@@ -54,4 +56,7 @@ export class User extends Model {
 
   @BelongsTo(() => UserType)
     user_type!: UserType;
+
+  @HasOne(() => Administrator)
+    administrator!: Administrator;
 }
