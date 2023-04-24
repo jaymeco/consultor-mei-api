@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import dateFns from 'date-fns';
+import { addHours } from 'date-fns';
 import process from 'process';
 import _ from 'lodash';
 import { AutheticationException } from '../Exceptions/AuthenticationException';
@@ -26,7 +26,7 @@ export class JwtService {
 
     return {
       access_token: token,
-      expires_in: dateFns.addHours(new Date(), 2).toISOString(),
+      expires_in: addHours(new Date(), 2).toISOString(),
     };
   }
 
