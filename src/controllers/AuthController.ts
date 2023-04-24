@@ -26,10 +26,6 @@ export class AuthController {
           name: user.name,
           avatar_path: user.avatar_path,
           email: user.email,
-          license: {
-            id: user.license.id,
-            license_type_id: user.license.license_type_id,
-          },
           user_type: {
             id: user.user_type.id,
             descrption: user.user_type.description,

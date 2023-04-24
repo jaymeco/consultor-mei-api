@@ -39,7 +39,6 @@ export class AdministratorController {
           name: createdUser.name,
           email: createdUser.email,
           avatar_path: createdUser.avatar_path,
-          license_id: createdUser.license_id,
           user_type_id: createdUser.user_type_id,
         },
       });

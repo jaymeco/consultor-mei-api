@@ -9,7 +9,6 @@ import { ResourceException } from '../Exceptions/ResourceException';
 import { LoginDto } from '../interfaces/dtos/Login';
 import { AutheticationException } from '../Exceptions/AuthenticationException';
 import { UserType } from '../models/UserType';
-import { License } from '../models/License';
 import { WithJwtPayload } from '../interfaces/utils/WithJwtPayload';
 import { JwtService } from './JwtService';
 
@@ -26,7 +25,6 @@ export class AuthService implements Contract {
       email: data.email,
       password,
       avatar_path: data.avatar_path,
-      license_id: data.license_id,
       user_type_id: data.user_type_id,
     });
 
@@ -88,7 +86,7 @@ export class AuthService implements Contract {
     const user = await models.User
       .findOne({
         where: { email: email },
-        include: [UserType, License],
+        include: [UserType],
       });
 
     if (_.isNull(user)) {
