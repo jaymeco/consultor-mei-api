@@ -28,4 +28,13 @@ export class AutheticationException extends Exception {
       undefined,
     );
   }
+
+  public invalidCredentials() {
+    return this.buildError(
+      'InvalidCredentialsError',
+      errorScope.AUTHENTICATION.INVALID_CREDENTIALS,
+      'E-mail ou senhas estão incorretos!',
+      undefined,
+    );
+  }
 }
