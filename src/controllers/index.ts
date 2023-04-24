@@ -1,5 +1,6 @@
 import { administratorService, authService } from '../services';
 import { AdministratorController } from './AdministratorController';
+import { AuthController } from './AuthController';
 
 
 const administratorController = new AdministratorController(
@@ -7,4 +8,8 @@ const administratorController = new AdministratorController(
   authService,
 );
 
-export { administratorController };
+const authController = new AuthController(
+  authService,
+);
+
+export { administratorController, authController };

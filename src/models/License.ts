@@ -27,7 +27,7 @@ export class License extends Model {
     id!: number;
 
   @ForeignKey(() => LicenseType)
-    license_id!: number;
+    license_type_id!: number;
 
   @BelongsTo(() => LicenseType)
     license_type!: LicenseType;
