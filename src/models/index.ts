@@ -6,15 +6,21 @@ import { UserType } from './UserType';
 import { LicenseType } from './LicenseType';
 import { Administrator } from './Administrator';
 import path from 'path';
+import { Client } from './Client';
+import { Cnae } from './Cnae';
+import { ClientCnae } from './ClientCnae';
 
 const configsPath = path.resolve(path.dirname(path.dirname(`${__filename}`)), '../configs');
 
 const databaseConfig = require(path.resolve(configsPath, 'database.js'));
 
 export const models = {
+  Cnae,
   User,
+  Client,
   License,
   UserType,
+  ClientCnae,
   LicenseType,
   Administrator,
 };
