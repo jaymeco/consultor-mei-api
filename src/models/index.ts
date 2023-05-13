@@ -6,6 +6,7 @@ import { UserType } from './UserType';
 import { LicenseType } from './LicenseType';
 import { Administrator } from './Administrator';
 import { ConsultingSegment } from './ConsultingSegment';
+import { ConsultingSegmentLicenseType } from './ConsultingSegmentLicenseType';
 import path from 'path';
 import { Client } from './Client';
 import { Cnae } from './Cnae';
@@ -25,6 +26,7 @@ export const models = {
   LicenseType,
   Administrator,
   ConsultingSegment,
+  ConsultingSegmentLicenseType,
 };
 
 export const sequelize = new Sequelize(
