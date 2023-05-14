@@ -1,16 +1,19 @@
+import path from 'path';
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 
+import { Cnae } from './Cnae';
 import { User } from './User';
+import { Client } from './Client';
+import { Status } from './Status';
 import { License } from './License';
 import { UserType } from './UserType';
+import { Consultant } from './Consultant';
+import { ClientCnae } from './ClientCnae';
 import { LicenseType } from './LicenseType';
 import { Administrator } from './Administrator';
+import { ConsultantRequest } from './ConsultantRequest';
 import { ConsultingSegment } from './ConsultingSegment';
 import { ConsultingSegmentLicenseType } from './ConsultingSegmentLicenseType';
-import path from 'path';
-import { Client } from './Client';
-import { Cnae } from './Cnae';
-import { ClientCnae } from './ClientCnae';
 
 const configsPath = path.resolve(path.dirname(path.dirname(`${__filename}`)), '../configs');
 
@@ -20,11 +23,14 @@ export const models = {
   Cnae,
   User,
   Client,
+  Status,
   License,
   UserType,
   ClientCnae,
+  Consultant,
   LicenseType,
   Administrator,
+  ConsultantRequest,
   ConsultingSegment,
   ConsultingSegmentLicenseType,
 };
